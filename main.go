@@ -1,6 +1,7 @@
 package main
 
 import (
+	"gingo/config"
 	"gingo/routes"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -12,10 +13,13 @@ func main() {
 
 	s := gin.Default()
 
-	//引入HTML模板
-	s.LoadHTMLGlob("../templates/*")
+	// 引入HTML模板
+	s.LoadHTMLGlob("templates/*")
 
-	//注册路由
+	// 注册配置文件
+	config.InitConfig()
+
+	// 注册路由
 	routes.InitAPIRouter(s)
 	routes.InitWebRouter(s)
 
@@ -31,5 +35,5 @@ func main() {
 		})
 	})
 
-	_ = s.Run(":8088")
+	_ = s.Run(config.Config.App.Addr)
 }
