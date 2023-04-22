@@ -6,7 +6,8 @@
 集成的组件包括：
 
 配置 [https://github.com/spf13/viper]
-日志(待完善)
+日志 [https://github.com/sirupsen/logrus]
+日志分割 [https://github.com/natefinch/lumberjack]
 ORM(待完善)
 
 持续更新中...

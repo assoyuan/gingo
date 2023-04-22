@@ -3,9 +3,18 @@ package main
 import (
 	"gingo/config"
 	"gingo/routes"
+	"gingo/utils"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
+
+func init() {
+	// 注册配置文件
+	config.InitConfig()
+
+	// 注册日志组件
+	utils.InitLog()
+}
 
 func main() {
 	//gin.SetMode(gin.ReleaseMode)
@@ -15,9 +24,6 @@ func main() {
 
 	// 引入HTML模板
 	s.LoadHTMLGlob("templates/*")
-
-	// 注册配置文件
-	config.InitConfig()
 
 	// 注册路由
 	routes.InitAPIRouter(s)

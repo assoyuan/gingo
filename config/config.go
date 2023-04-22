@@ -8,7 +8,7 @@ import (
 )
 
 type app struct {
-	Desc    string `yaml:"desc"`
+	Name    string `yaml:"name"`
 	Addr    string `yaml:"addr"`
 	Version string `yaml:"version"`
 	Env     string `yaml:"env"`
@@ -26,10 +26,24 @@ type redis struct {
 	Port string `yaml:"port"`
 }
 
+type logSplit struct {
+	MaxSize    int  `yaml:"maxSize"`
+	MaxAge     int  `yaml:"maxAge"`
+	MaxBackups int  `yaml:"maxBackups"`
+	Compress   bool `yaml:"compress"`
+}
+
+type log struct {
+	Name  string   `yaml:"name"`
+	Path  string   `yaml:"path"`
+	Split logSplit `yaml:"split"`
+}
+
 type allConfig struct {
 	App   app   `yaml:"app"`
 	Mysql mysql `yaml:"mysql"`
 	Redis redis `yaml:"redis"`
+	Log   log   `yaml:"log"`
 }
 
 var Config allConfig
