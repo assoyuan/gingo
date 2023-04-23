@@ -14,31 +14,6 @@ type app struct {
 	Env     string `yaml:"env"`
 }
 
-type mysql struct {
-	Host     string `yaml:"host"`
-	Port     string `yaml:"port"`
-	User     string `yaml:"user"`
-	Password string `yaml:"password"`
-}
-
-type redis struct {
-	Host string `yaml:"host"`
-	Port string `yaml:"port"`
-}
-
-type logSplit struct {
-	MaxSize    int  `yaml:"maxSize"`
-	MaxAge     int  `yaml:"maxAge"`
-	MaxBackups int  `yaml:"maxBackups"`
-	Compress   bool `yaml:"compress"`
-}
-
-type log struct {
-	Name  string   `yaml:"name"`
-	Path  string   `yaml:"path"`
-	Split logSplit `yaml:"split"`
-}
-
 type allConfig struct {
 	App   app   `yaml:"app"`
 	Mysql mysql `yaml:"mysql"`
