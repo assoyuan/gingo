@@ -2,7 +2,7 @@ app:
   name: GinGo
   version: v1.0.0
   addr: 0.0.0.0:8088
-  env: main
+  env: debug # debug,release,test
 
 mysql:
   host: 127.0.0.1

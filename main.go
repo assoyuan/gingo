@@ -1,12 +1,17 @@
 package main
 
 import (
+	"embed"
 	"gingo/config"
 	"gingo/routes"
 	"gingo/utils"
 	"github.com/gin-gonic/gin"
+	"html/template"
 	"net/http"
 )
+
+//go:embed templates
+var f embed.FS
 
 func init() {
 	// 注册配置文件
@@ -17,13 +22,13 @@ func init() {
 }
 
 func main() {
-	//gin.SetMode(gin.ReleaseMode)
-	//s := gin.New()
+	gin.SetMode(config.Config.App.Env)
 
 	s := gin.Default()
 
 	// 引入HTML模板
-	s.LoadHTMLGlob("templates/*")
+	temple := template.Must(template.New("").ParseFS(f, "templates/*"))
+	s.SetHTMLTemplate(temple)
 
 	// 注册路由
 	routes.InitAPIRouter(s)
