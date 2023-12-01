@@ -39,7 +39,8 @@ func InitConfig() {
 	}
 
 	v.WatchConfig()
-	v.OnConfigChange(func(in fsnotify.Event) {
+	v.OnConfigChange(func(e fsnotify.Event) {
+		fmt.Println("配置文件变更:", e.Name, "操作类型:", e.Op.String())
 		if err := v.Unmarshal(&Config); err != nil {
 			panic(fmt.Errorf("配置重载失败: %s\n", err))
 		}
